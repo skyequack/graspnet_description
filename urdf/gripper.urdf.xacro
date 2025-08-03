@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- Gripper URDF for GraspNet -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="graspnet_gripper" params="prefix parent *origin">
+    
+    <!-- Gripper base link -->
+    <link name="${prefix}gripper_base_link">
+      <visual>
+        <geometry>
+          <box size="0.05 0.08 0.03"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.5 0.5 0.5 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.05 0.08 0.03"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      </inertial>
+    </link>
+    
+    <!-- Gripper joint -->
+    <joint name="${prefix}gripper_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${prefix}gripper_base_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+    
+    <!-- TODO: Add gripper fingers -->
+    <!-- TODO: Add gripper actuators -->
+    <!-- TODO: Add gripper sensors -->
+    
+  </xacro:macro>
+  
+</robot>
